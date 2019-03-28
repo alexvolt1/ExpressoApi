@@ -13,6 +13,8 @@ namespace ExpressoApi.Models
         public int Price { get; set; }
         public string Image { get; set; }
 
+       public int MenuId { get; set; }
+
 
     }
 }

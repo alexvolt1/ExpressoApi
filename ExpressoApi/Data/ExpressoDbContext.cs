@@ -1,4 +1,6 @@
-﻿using ExpressoApi.Models;
+﻿using ExpressoApi.Data.DbInitializers.MenuInitializers;
+using ExpressoApi.Data.DbInitializers.SubMenuInitializers;
+using ExpressoApi.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,9 +15,16 @@ namespace ExpressoApi.Data
         {
 
         }
+
         public DbSet<Menu> Menus { get; set; }
-        //public DbSet<SubMenu> SubMenus { get; set; }
+        public DbSet<SubMenu> SubMenus { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new MenuInitializerConfiguration());
+            modelBuilder.ApplyConfiguration(new SubMenuInitializerConfiguration());
+        }
 
     }
 }
